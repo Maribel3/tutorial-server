@@ -25,10 +25,6 @@ public class ClientController {
 	@Autowired
 	  private ClientService clientService;
 
-	  /**
-	  * Método para recuperar todas las Category
-	  * @return
-	  */
 	 @Autowired
 	  BeanMapper beanMapper;
 	 
@@ -42,26 +38,14 @@ public class ClientController {
 		    return this.beanMapper.mapList(this.clientService.findAll(), ClientDto.class);
 	  }
 
-	  /**
-	  * Método para crear o actualizar una Category
-	  * @param dto
-	  * @return
-	  */
+	
 	  @RequestMapping(path = { "", "/{id}" }, method = RequestMethod.POST)
 	  public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody ClientDto dto) {
 
 	    this.clientService.save(id, dto);
 	  }
 
-	  /**
-	  * Método para borrar una Category
-	  * @param id
-	  *  @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-	  public void delete(@PathVariable("id") Long id) {
-
-	    this.clientService.delete(id);
-	  }
-	  */
+	
 	 
 	  @DeleteMapping(path ="/{id}")
 	  public String deleteById(@PathVariable("id") Long id) {

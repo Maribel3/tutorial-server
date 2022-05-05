@@ -4,17 +4,24 @@ import java.sql.Date;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capgemini.ccsw.tutorial_server.author.model.Author;
+import com.capgemini.ccsw.tutorial_server.author.model.AuthorSearchDto;
 import com.capgemini.ccsw.tutorial_server.category.model.Category;
 import com.capgemini.ccsw.tutorial_server.category.model.CategoryDto;
 import com.capgemini.ccsw.tutorial_server.client.ClientService;
 import com.capgemini.ccsw.tutorial_server.game.GameService;
 import com.capgemini.ccsw.tutorial_server.load.model.Load;
 import com.capgemini.ccsw.tutorial_server.load.model.LoadDto;
+import com.capgemini.ccsw.tutorial_server.load.model.LoadSearchDto;
 @Transactional
 @Service
 public class LoadServiceImpl implements LoadService {
@@ -27,6 +34,18 @@ public class LoadServiceImpl implements LoadService {
 
 	  @Autowired 
 	  GameService gameService;
+	  
+	  
+	  public Page<Load> getLoad(int pageNumber, int pageSize){
+			Pageable page = PageRequest.of(pageNumber, pageSize);
+			return this.loadRepository.findAll(page);
+
+			
+		}
+	  @Override
+		public Page<Load> findPage(LoadSearchDto dto) {
+			return this.loadRepository.findAll(dto.getPageable());
+		}
 	  public Load get(Long id) {
 
 	        return this.loadRepository.findById(id).orElse(null);
@@ -94,14 +113,11 @@ public class LoadServiceImpl implements LoadService {
 		this.loadRepository.deleteGameLoad(game);
 		
 	}
+	@Override
+	public Integer validateLoan(Long game, String fecha) {
+		return this.loadRepository.validateLoan(game, fecha);
+	}
 	
-	
-	//@Override
-	//public List<Load> mostrarNombre() {
-		// TODO Auto-generated method stub
-		//return null;
-	//}
-
 
 	
 

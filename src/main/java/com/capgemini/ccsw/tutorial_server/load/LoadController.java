@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.ccsw.tutorial_server.author.model.AuthorDto;
+import com.capgemini.ccsw.tutorial_server.author.model.AuthorSearchDto;
 import com.capgemini.ccsw.tutorial_server.game.model.Game;
 import com.capgemini.ccsw.tutorial_server.load.model.Load;
 import com.capgemini.ccsw.tutorial_server.load.model.LoadDto;
-import com.devonfw.module.beanmapping.common.api.BeanMapper;
+import com.capgemini.ccsw.tutorial_server.load.model.LoadSearchDto;
+import com.capgemini.ccsw.tutorial_server.config.mapper.BeanMapper;
 
 @RequestMapping(value="/load")
 @RestController
@@ -31,6 +35,11 @@ public class LoadController {
 	@Autowired
 	BeanMapper beanMapper;
 	
+	 @RequestMapping(path = "", method = RequestMethod.POST)
+	    public Page<LoadDto> findPage(@RequestBody LoadSearchDto dto) {
+
+		 return this.beanMapper.mapPage(this.loadService.findPage(dto), LoadDto.class);	  
+	 }
 	  @RequestMapping(path = "", method = RequestMethod.GET)
 	  public List<LoadDto> findAll() {
 
@@ -38,7 +47,7 @@ public class LoadController {
 		    
 	  }
 
-	  @RequestMapping(path = "/Search", method = RequestMethod.GET)
+	  @RequestMapping(path = "/search", method = RequestMethod.GET)
 	  public List<LoadDto> findGameClient(@RequestParam(value="game_id", required = false)Long game,
 	  @RequestParam(value="client_id", required =false)Long client){
 	  
@@ -59,12 +68,11 @@ public class LoadController {
 
 	    this.loadService.delete(id);
 	  }
+	  
 	 @ResponseBody
-	@RequestMapping(path = "/searchDate", method = RequestMethod.GET)
-	public List<LoadDto> findDate (
-		//@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateLoan,
-			//@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateReturn, 
-			//@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	 @RequestMapping(path = "/searchDate", method = RequestMethod.GET)
+	 public List<LoadDto> findDate (
+		
 			@PathVariable(required = false)String fecha){
 		 
 		 List<Load> loads = loadService.findDate(fecha);
@@ -91,5 +99,10 @@ public class LoadController {
 		 return this.beanMapper.mapList(loads, LoadDto.class);
 	 }
 	
-	 
+	 @RequestMapping(path ="/validateLoan", method = RequestMethod.GET)
+	 public Integer validateLoan(@RequestParam(value="game", required = false)Long game, @RequestParam (value="dateLoan", required= false)String dateLoan){
+		
+	  return (Integer) this.loadService.validateLoan(game, dateLoan);
+		
+	 }
 }

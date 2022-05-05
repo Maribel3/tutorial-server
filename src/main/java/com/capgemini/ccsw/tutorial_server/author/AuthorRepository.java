@@ -19,6 +19,6 @@ public interface AuthorRepository extends CrudRepository<Author, Long> {
 	Page<Author> findAll(Pageable page);
 
 
-   // Page<Author> findAll(Pageable pageable);
+   
 
 }

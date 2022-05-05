@@ -19,9 +19,8 @@ INSERT INTO GAME(id, title, age, category_id, author_id) VALUES (6, 'Azul', '8',
 INSERT INTO CLIENT(id, name) VALUES (1, 'Sara');
 INSERT INTO CLIENT(id, name) VALUES (2, 'Raúl');
 INSERT INTO CLIENT(id, name) VALUES (3, 'Carla');
-INSERT INTO CLIENT(id, name) VALUES (4, 'Lucia');
+
 
 insert into load (id,game_id,client_id,date_loan,date_return) values (1,1,1,TO_DATE('01/01/2022', 'DD/MM/YYYY'),TO_DATE('14/01/2022', 'DD/MM/YYYY'));
 insert into load (id,game_id,client_id,date_loan,date_return) values (2,2,2,TO_DATE('01/02/2022', 'DD/MM/YYYY'),TO_DATE('14/02/2022', 'DD/MM/YYYY'));
 insert into load (id,game_id,client_id,date_loan,date_return) values (3,3,3,TO_DATE('01/03/2022', 'DD/MM/YYYY'),TO_DATE('14/03/2022', 'DD/MM/YYYY'));
-insert into load (id,game_id,client_id,date_loan,date_return) values (4,4,4,TO_DATE('01/04/2022', 'DD/MM/YYYY'),TO_DATE('14/04/2022', 'DD/MM/YYYY'));

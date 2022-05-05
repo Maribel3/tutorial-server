@@ -46,8 +46,8 @@ public class CategoryIT {
           assertEquals(3, response.getBody().size());
     }
     
-    public static final Long NEW_CATEGORY_ID = 4L;
-    public static final String NEW_CATEGORY_NAME = "CAT4";
+    public static final Long NEW_CATEGORY_ID = 3L;
+    public static final String NEW_CATEGORY_NAME = "Familiar";
 
     @Test
     public void saveWithoutIdShouldCreateNewCategory() {
@@ -59,13 +59,13 @@ public class CategoryIT {
 
           ResponseEntity<List<CategoryDto>> response = restTemplate.exchange(LOCALHOST + port + SERVICE_PATH, HttpMethod.GET, null, responseType);
           assertNotNull(response);
-          assertEquals(4, response.getBody().size());
+          assertEquals(3, response.getBody().size());
 
           CategoryDto categorySearch = response.getBody().stream().filter(item -> item.getId().equals(NEW_CATEGORY_ID)).findFirst().orElse(null);
           assertNotNull(categorySearch);
           assertEquals(NEW_CATEGORY_NAME, categorySearch.getName());
     }
-    public static final Long MODIFY_CATEGORY_ID = 3L;
+    public static final Long MODIFY_CATEGORY_ID = 2L;
 
     @Test
     public void modifyWithExistIdShouldModifyCategory() {
@@ -77,7 +77,7 @@ public class CategoryIT {
 
           ResponseEntity<List<CategoryDto>> response = restTemplate.exchange(LOCALHOST + port + SERVICE_PATH, HttpMethod.GET, null, responseType);
           assertNotNull(response);
-          assertEquals(3, response.getBody().size());
+          assertEquals(2, response.getBody().size());
 
           CategoryDto categorySearch = response.getBody().stream().filter(item -> item.getId().equals(MODIFY_CATEGORY_ID)).findFirst().orElse(null);
           assertNotNull(categorySearch);
