@@ -100,9 +100,21 @@ public class LoadController {
 	 }
 	
 	 @RequestMapping(path ="/validateLoan", method = RequestMethod.GET)
-	 public Integer validateLoan(@RequestParam(value="game", required = false)Long game, @RequestParam (value="dateLoan", required= false)String dateLoan){
+	 public Integer validateLoan(@RequestParam(value="game_id", required = false)Long game, @RequestParam (value="fecha", required= false)String fecha){
 		
-	  return (Integer) this.loadService.validateLoan(game, dateLoan);
+	  return (Integer) this.loadService.validateLoan(game, fecha);
+		
+	 }
+	 
+	 @RequestMapping(path="/findSearchClientDate", method = RequestMethod.GET)
+	 public List <LoadDto> findSearchClientDate(@RequestParam(value="fecha", required = false) String fecha, @RequestParam(value="client_id", required = false) Long client){
+		 List<Load> loads = this.loadService.findSearchClientDate(client, fecha);
+		 return this.beanMapper.mapList(loads, LoadDto.class);
+	 }
+	 @RequestMapping(path ="/validateGameLoad", method = RequestMethod.GET)
+	 public Integer validateGameLoad(@RequestParam(value="fecha", required = false)String fecha, @RequestParam (value="client_id", required= false)Long client){
+		
+	  return (Integer) this.loadService.validateGameLoad(fecha, client);
 		
 	 }
 }

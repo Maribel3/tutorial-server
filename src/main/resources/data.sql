@@ -21,6 +21,6 @@ INSERT INTO CLIENT(id, name) VALUES (2, 'Raúl');
 INSERT INTO CLIENT(id, name) VALUES (3, 'Carla');
 
 
-insert into load (id,game_id,client_id,date_loan,date_return) values (1,1,1,TO_DATE('01/01/2022', 'DD/MM/YYYY'),TO_DATE('14/01/2022', 'DD/MM/YYYY'));
-insert into load (id,game_id,client_id,date_loan,date_return) values (2,2,2,TO_DATE('01/02/2022', 'DD/MM/YYYY'),TO_DATE('14/02/2022', 'DD/MM/YYYY'));
-insert into load (id,game_id,client_id,date_loan,date_return) values (3,3,3,TO_DATE('01/03/2022', 'DD/MM/YYYY'),TO_DATE('14/03/2022', 'DD/MM/YYYY'));
+insert into load (id,game_id,client_id,date_loan,date_return) values (1,1,1,TO_DATE('02/02/2022', 'DD/MM/YYYY'),TO_DATE('05/02/2022', 'DD/MM/YYYY'));
+insert into load (id,game_id,client_id,date_loan,date_return) values (2,2,2,TO_DATE('03/03/2022', 'DD/MM/YYYY'),TO_DATE('10/03/2022', 'DD/MM/YYYY'));
+insert into load (id,game_id,client_id,date_loan,date_return) values (3,3,3,TO_DATE('04/04/2022', 'DD/MM/YYYY'),TO_DATE('10/04/2022', 'DD/MM/YYYY'));

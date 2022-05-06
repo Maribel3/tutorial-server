@@ -45,7 +45,12 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	 Page<Load> findAll(Pageable pageable);
 	 
 
-	 @Query("select count(g) from Load g where g.game.id= :game and date_loan= :dateLoan")
-	 Integer validateLoan (@Param("game") Long game_id, @Param("dateLoan") String dateLoan);
+	 @Query("select count(g) from Load g where g.game.id= :game and :fecha between date_loan and date_return")
+	 Integer validateLoan (@Param("game") Long game, @Param("fecha") String fecha);
 
+	 
+	 @Query("select l from Load l where l.client.id= :client and :fecha between date_loan and date_return")
+	 List <Load> findSearchClientDate(@Param("client") Long client,@Param("fecha") String fecha);
+	 @Query("select count(l) from Load l where l.client.id = :client and :fecha between date_loan and date_return")
+	 Integer validateGameLoad (@Param("client") Long client, @Param("fecha") String fecha);
 }
