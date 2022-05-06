@@ -117,4 +117,10 @@ public class LoadController {
 	  return (Integer) this.loadService.validateGameLoad(fecha, client);
 		
 	 }
+	 @RequestMapping(path ="/comprobarClientePrestamo", method = RequestMethod.GET)
+	 public Integer comprobarClientePrestamo(@RequestParam (value="client_id", required= false)Long client){
+		
+	  return (Integer) this.loadService.comprobarClientePrestamo(client);
+		
+	 }
 }

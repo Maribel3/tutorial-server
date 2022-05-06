@@ -33,4 +33,6 @@ public interface LoadService {
 	Integer validateLoan(Long game,String fecha);
 	List <Load> findSearchClientDate(Long client,String fecha);
 	Integer validateGameLoad (String fecha, Long client);
+	Integer comprobarClientePrestamo(Long client);
+
 }

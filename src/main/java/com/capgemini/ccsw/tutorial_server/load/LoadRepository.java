@@ -53,4 +53,9 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	 List <Load> findSearchClientDate(@Param("client") Long client,@Param("fecha") String fecha);
 	 @Query("select count(l) from Load l where l.client.id = :client and :fecha between date_loan and date_return")
 	 Integer validateGameLoad (@Param("client") Long client, @Param("fecha") String fecha);
+	 
+	
+	 
+	 @Query("select count(l) from Load l where l.client.id= :client")
+	 Integer comprobarClientePrestamo(@Param("client")Long client);
 }
