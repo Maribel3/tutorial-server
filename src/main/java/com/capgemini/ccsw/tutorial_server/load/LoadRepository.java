@@ -58,4 +58,8 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	 
 	 @Query("select count(l) from Load l where l.client.id= :client")
 	 Integer comprobarClientePrestamo(@Param("client")Long client);
+	 
+	 
+	 SELECT count(game_id)  from Load where game_id =2 and '2022-03-05' between date_loan and (date_loan+14)
+     @Query("select count(l)")
 }
