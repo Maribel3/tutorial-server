@@ -45,12 +45,13 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	 Page<Load> findAll(Pageable pageable);
 	 
 
-	 @Query("select count(g) from Load g where g.game.id= :game and :fecha between date_loan and date_return")
+	 @Query("select count(g.game.id) from Load g where :fecha between date_loan and date_return and g.game.id= :game")
 	 Integer validateLoan (@Param("game") Long game, @Param("fecha") String fecha);
 
 	 
 	 @Query("select l from Load l where l.client.id= :client and :fecha between date_loan and date_return")
 	 List <Load> findSearchClientDate(@Param("client") Long client,@Param("fecha") String fecha);
+	 
 	 @Query("select count(l) from Load l where l.client.id = :client and :fecha between date_loan and date_return")
 	 Integer validateGameLoad (@Param("client") Long client, @Param("fecha") String fecha);
 	 
@@ -60,6 +61,9 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	 Integer comprobarClientePrestamo(@Param("client")Long client);
 	 
 	 
-	 SELECT count(game_id)  from Load where game_id =2 and '2022-03-05' between date_loan and (date_loan+14)
-     @Query("select count(l)")
+	 @Query("select count(l) from Load l where :fecha between date_loan and date_return and l.client.id= :client")
+	 Integer fechaInferior(@Param("client") Long client, @Param("fecha") String fecha);
+	 
+     @Query("select count(l) from Load l where l.game.id= :game and :fecha between date_loan and (date_loan+14)")
+     Integer comprobarJuegos (@Param("game") Long game, @Param("fecha") String fecha);
 }

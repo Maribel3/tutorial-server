@@ -129,6 +129,14 @@ public class LoadServiceImpl implements LoadService {
 	public Integer comprobarClientePrestamo(Long client) {
 		return this.loadRepository.comprobarClientePrestamo(client);
 	}
+	@Override
+	public Integer comprobarJuegos(Long game, String fecha) {
+		return this.loadRepository.comprobarJuegos(game, fecha);
+	}
+	@Override
+	public Integer fechaInferior(Long client, String fecha) {
+		return this.loadRepository.fechaInferior(client, fecha);
+	}
 	
 
 	
