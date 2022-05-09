@@ -30,10 +30,10 @@ public interface LoadService {
 	
 	void deleteGameLoad(Long game);
 	Page<Load> findPage(LoadSearchDto dto);
-	Integer validateLoan(Long game,String fecha);
+	Long validateLoan(Long game,String fecha);
 	List <Load> findSearchClientDate(Long client,String fecha);
 	Integer validateGameLoad (String fecha, Long client);
 	Integer comprobarClientePrestamo(Long client);
 	Integer comprobarJuegos (Long game, String fecha);
-	Integer fechaInferior(Long client,String fecha);
+	Long fechaInferior(Long client,String fecha);
 }
