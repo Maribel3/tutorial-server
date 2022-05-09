@@ -114,7 +114,7 @@ public class LoadServiceImpl implements LoadService {
 		
 	}
 	@Override
-	public Long validateLoan(Long game, String fecha) {
+	public Integer validateLoan(Long game, String fecha) {
 		return this.loadRepository.validateLoan(game, fecha);
 	}
 	@Override
@@ -134,8 +134,12 @@ public class LoadServiceImpl implements LoadService {
 		return this.loadRepository.comprobarJuegos(game, fecha);
 	}
 	@Override
-	public Long fechaInferior(Long client, String fecha) {
+	public Integer fechaInferior(Long client, String fecha) {
 		return this.loadRepository.fechaInferior(client, fecha);
+	}
+	@Override
+	public Integer validarDateReturn(Long client, String fecha) {
+		return this.loadRepository.validarDateReturn(client, fecha);
 	}
 	
 

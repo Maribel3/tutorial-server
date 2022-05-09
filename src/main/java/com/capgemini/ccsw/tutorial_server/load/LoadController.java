@@ -100,9 +100,9 @@ public class LoadController {
 	 }
 	
 	 @RequestMapping(path ="/validateLoan", method = RequestMethod.GET)
-	 public Long validateLoan(@RequestParam(value="game", required = false)Long game, @RequestParam (value="fecha", required= false)String fecha){
+	 public Integer validateLoan(@RequestParam(value="game", required = false)Long game, @RequestParam (value="fecha", required= false)String fecha){
 		
-	  return (Long) this.loadService.validateLoan(game, fecha);
+	  return (Integer) this.loadService.validateLoan(game, fecha);
 		
 	 }
 	 
@@ -130,9 +130,15 @@ public class LoadController {
 		
 	 }
 	 @RequestMapping(path ="/fechaInferior", method = RequestMethod.GET)
-	 public Long fechaInferior(@RequestParam (value="client", required= false)Long client, @RequestParam(value="fecha")String fecha){
+	 public Integer fechaInferior(@RequestParam (value="client", required= false)Long client, @RequestParam(value="fecha")String fecha){
 		
-	  return (Long) this.loadService.fechaInferior(client,fecha);
+	  return (Integer) this.loadService.fechaInferior(client,fecha);
+		
+	 }
+	 @RequestMapping(path ="/validarDateReturn", method = RequestMethod.GET)
+	 public Integer validarDateReturn(@RequestParam (value="client", required= false)Long client, @RequestParam(value="fecha")String fecha){
+		
+	  return (Integer) this.loadService.validarDateReturn(client,fecha);
 		
 	 }
 }

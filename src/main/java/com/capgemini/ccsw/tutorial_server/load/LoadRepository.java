@@ -46,7 +46,7 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	 
 
 	 @Query("select count(l) from Load l where l.game.id= :game and :fecha between date_loan and date_return ")
-	 Long validateLoan (@Param("game") Long game, @Param("fecha") String fecha);
+	 Integer validateLoan (@Param("game") Long game, @Param("fecha") String fecha);
 
 	 
 	 @Query("select l from Load l where l.client.id= :client and :fecha between date_loan and date_return")
@@ -55,14 +55,15 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	 @Query("select count(l) from Load l where l.client.id = :client and :fecha between date_loan and date_return")
 	 Integer validateGameLoad (@Param("client") Long client, @Param("fecha") String fecha);
 	 
-	
+	 @Query("select count(l) from Load l where l.client.id= :client and :fecha > date_return")
+	 Integer validarDateReturn(@Param("client") Long client, @Param("fecha") String fecha);
 	 
 	 @Query("select count(l) from Load l where l.client.id= :client")
 	 Integer comprobarClientePrestamo(@Param("client")Long client);
 	 
 	 
 	 @Query("select count(l) from Load l where l.client.id= :client and :fecha between date_loan and date_return ")
-	 Long fechaInferior(@Param("client") Long client, @Param("fecha") String fecha);
+	 Integer fechaInferior(@Param("client") Long client, @Param("fecha") String fecha);
 	 
      @Query("select count(l) from Load l where l.game.id= :game and :fecha between date_loan and (date_loan+14)")
      Integer comprobarJuegos (@Param("game") Long game, @Param("fecha") String fecha);
