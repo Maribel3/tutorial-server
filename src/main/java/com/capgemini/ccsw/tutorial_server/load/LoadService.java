@@ -37,4 +37,7 @@ public interface LoadService {
 	Integer comprobarJuegos (Long game, String fecha);
 	Integer fechaInferior(Long client,String fecha);
 	Integer validarDateReturn(Long client,String fecha);
+	List <Load> findGameDate(Long game, String fecha);
+	List <Load> findClientDate(Long client,String fecha);
+	
 }

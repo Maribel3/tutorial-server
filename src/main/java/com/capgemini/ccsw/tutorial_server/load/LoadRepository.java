@@ -18,6 +18,12 @@ import com.capgemini.ccsw.tutorial_server.load.model.LoadDto;
 public interface LoadRepository extends CrudRepository<Load, Long>{
 
 	
+	@Query("select l from Load l where game_id= :game and :fecha between date_loan and date_return")
+	List <Load> findGameDate(@Param("game") Long game, @Param("fecha") String fecha);
+	
+	@Query("select l from Load l where client_id= :client and :fecha between date_loan and date_return")
+	List <Load> findClientDate(@Param("client") Long client, @Param("fecha") String fecha);
+	
 	 @Query("select l from Load l where (:game is null or l.game.id = :game) and (:client is null or l.client.id = :client)")
     List<Load> findGameClient(@Param("game") Long game, @Param("client") Long client);
 

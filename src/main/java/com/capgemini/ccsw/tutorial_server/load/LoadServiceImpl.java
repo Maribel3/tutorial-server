@@ -141,6 +141,14 @@ public class LoadServiceImpl implements LoadService {
 	public Integer validarDateReturn(Long client, String fecha) {
 		return this.loadRepository.validarDateReturn(client, fecha);
 	}
+	@Override
+	public List<Load> findGameDate(Long game, String fecha) {
+		return this.loadRepository.findGameDate(game, fecha);
+		}
+	@Override
+	public List<Load> findClientDate(Long client, String fecha) {
+		return this.loadRepository.findClientDate(client, fecha);
+	}
 	
 
 	

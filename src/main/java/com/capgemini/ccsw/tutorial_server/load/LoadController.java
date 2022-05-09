@@ -47,9 +47,9 @@ public class LoadController {
 		    
 	  }
 
-	  @RequestMapping(path = "/search", method = RequestMethod.GET)
-	  public List<LoadDto> findGameClient(@RequestParam(value="game_id", required = false)Long game,
-	  @RequestParam(value="client_id", required =false)Long client){
+	  @RequestMapping(path = "/findGameClient", method = RequestMethod.GET)
+	  public List<LoadDto> findGameClient(@RequestParam(value="game", required = false)Long game,
+	  @RequestParam(value="client", required =false)Long client){
 	  
 	        List<Load> loads = loadService.findGameClient(game, client);
 
@@ -88,8 +88,8 @@ public class LoadController {
 		 
 	 }
 	 
-	 @RequestMapping(path ="/client", method = RequestMethod.GET)
-	 public List<LoadDto> findClient(@RequestParam(value="client_id", required = false)Long client){
+	 @RequestMapping(path ="/findClient", method = RequestMethod.GET)
+	 public List<LoadDto> findClient(@RequestParam(value="client", required = false)Long client){
 		 List<Load> loads = loadService.findClient(client);
 		 return this.beanMapper.mapList(loads, LoadDto.class);
 	 }
@@ -141,4 +141,16 @@ public class LoadController {
 	  return (Integer) this.loadService.validarDateReturn(client,fecha);
 		
 	 }
+	 
+	 @RequestMapping(path="/findGameDate", method = RequestMethod.GET)
+	 public List <LoadDto> findGameDate(@RequestParam(value="fecha", required = false) String fecha, @RequestParam(value="game", required = false) Long game){
+		 List<Load> loads = this.loadService.findGameDate(game, fecha);
+		 return this.beanMapper.mapList(loads, LoadDto.class);
+	 }
+	 @RequestMapping(path="/findClientDate", method = RequestMethod.GET)
+	 public List <LoadDto> findClientDate(@RequestParam(value="fecha", required = false) String fecha, @RequestParam(value="client", required = false) Long client){
+		 List<Load> loads = this.loadService.findClientDate(client, fecha);
+		 return this.beanMapper.mapList(loads, LoadDto.class);
+	 }
+	
 }
