@@ -44,7 +44,7 @@ public class LoadServiceImpl implements LoadService {
 		}
 	  @Override
 		public Page<Load> findPage(LoadSearchDto dto) {
-			return this.loadRepository.findAll(dto.getPageable());
+			return this.loadRepository.findSearchFilterPage(dto.getGameId(), dto.getClientId(), dto.getDate(), dto.getPageable());
 		}
 	  public Load get(Long id) {
 

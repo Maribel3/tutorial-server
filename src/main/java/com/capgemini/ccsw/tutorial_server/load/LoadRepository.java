@@ -48,6 +48,10 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	 
 	
 	 Page<Load> findAll(Pageable pageable);
+
+	@Query("select l from Load l where (:game is null or l.game.id = :game) "
+			+ "and (:client is null or l.client.id = :client) and (:fecha is null or :fecha between date_loan and date_return)")
+	Page<Load> findSearchFilterPage(@Param("game") Long game, @Param("client") Long client, @Param ("fecha") String fecha, Pageable pageable);
 	 
 
 	 @Query("select count(l) from Load l where l.game.id= :game and :fecha between date_loan and date_return ")
