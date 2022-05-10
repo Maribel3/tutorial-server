@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import com.capgemini.ccsw.tutorial_server.author.model.Author;
@@ -39,5 +40,6 @@ public interface LoadService {
 	Integer validarDateReturn(Long client,String fecha);
 	List <Load> findGameDate(Long game, String fecha);
 	List <Load> findClientDate(Long client,String fecha);
+	Page<Load> findSearchFilterPage(Long game, Long client,String fecha, Pageable pageable);
 	
 }

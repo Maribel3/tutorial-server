@@ -149,6 +149,10 @@ public class LoadServiceImpl implements LoadService {
 	public List<Load> findClientDate(Long client, String fecha) {
 		return this.loadRepository.findClientDate(client, fecha);
 	}
+	@Override
+	public Page<Load> findSearchFilterPage(Long game, Long client, String fecha, Pageable pageable) {
+		return this.loadRepository.findSearchFilterPage(game, client, fecha, pageable);
+	}
 	
 
 	

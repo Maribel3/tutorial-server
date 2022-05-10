@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,12 @@ public class LoadController {
 	    public Page<LoadDto> findPage(@RequestBody LoadSearchDto dto) {
 
 		 return this.beanMapper.mapPage(this.loadService.findPage(dto), LoadDto.class);	  
+	 }
+	 @RequestMapping(path="/findSearchFilterPage", method = RequestMethod.POST)
+	 public Page<LoadDto> findSearchFilterPage(@RequestParam(value="game", required = false) Long game,
+			 @RequestParam(value="client", required = false) Long client,@RequestParam(value="fecha", required =  false)
+			 String fecha, Pageable pageable){
+		 return this.beanMapper.mapPage(this.loadService.findSearchFilterPage(game, client, fecha,pageable), LoadDto.class);
 	 }
 	  @RequestMapping(path = "", method = RequestMethod.GET)
 	  public List<LoadDto> findAll() {
