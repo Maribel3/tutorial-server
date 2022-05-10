@@ -14,72 +14,60 @@ import com.capgemini.ccsw.tutorial_server.game.model.Game;
 import com.capgemini.ccsw.tutorial_server.game.model.GameDto;
 import com.capgemini.ccsw.tutorial_server.load.LoadService;
 
-/**
-* @author ccsw
-*/
 @Service
 @Transactional
 public class GameServiceImpl implements GameService {
 
-    @Autowired
-    GameRepository gameRepository;
+	@Autowired
+	GameRepository gameRepository;
 
-    @Autowired
-    AuthorService authorService;
+	@Autowired
+	AuthorService authorService;
 
-    @Autowired
-    LoadService loadService;
-    @Autowired
-    CategoryService categoryService;
-    /**
-    * {@inheritDoc}
-    */
-    @Override
-    public List<Game> find(String title, Long category) {
+	@Autowired
+	LoadService loadService;
+	@Autowired
+	CategoryService categoryService;
 
-        return this.gameRepository.find(title, category);
-    }
+	@Override
+	public List<Game> find(String title, Long category) {
 
-    /**
-    * {@inheritDoc}
-    */
-    @Override
-    public void save(Long id, GameDto dto) {
+		return this.gameRepository.find(title, category);
+	}
 
-        Game game = null;
+	@Override
+	public void save(Long id, GameDto dto) {
 
-        if (id == null)
-            game = new Game();
-        else
-            game = this.gameRepository.findById(id).orElse(null);
+		Game game = null;
 
-        BeanUtils.copyProperties(dto, game, "id", "author", "category");
+		if (id == null)
+			game = new Game();
+		else
+			game = this.gameRepository.findById(id).orElse(null);
 
-        game.setAuthor(authorService.get(dto.getAuthor().getId()));
-        game.setCategory(categoryService.get(dto.getCategory().getId()));
-        this.gameRepository.save(game);
-    }
+		BeanUtils.copyProperties(dto, game, "id", "author", "category");
 
-    @Override
-	public void deleteByCategoryIdNativo(Long idCategory)  {
+		game.setAuthor(authorService.get(dto.getAuthor().getId()));
+		game.setCategory(categoryService.get(dto.getCategory().getId()));
+		this.gameRepository.save(game);
+	}
 
-		
-			gameRepository.deleteByCategoryIdNativo(idCategory);
-		
+	@Override
+	public void deleteByCategoryIdNativo(Long idCategory) {
+
+		gameRepository.deleteByCategoryIdNativo(idCategory);
 
 	}
 
 	@Override
 	public void delete(Long id) {
-		 this.gameRepository.deleteById(id);
+		this.gameRepository.deleteById(id);
 
-		
 	}
 
 	@Override
 	public Game get(Long id) {
-		 return this.gameRepository.findById(id).orElse(null);
+		return this.gameRepository.findById(id).orElse(null);
 	}
 
-	
 }

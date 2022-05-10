@@ -2,7 +2,6 @@ package com.capgemini.ccsw.tutorial_server.load.model;
 
 import org.springframework.data.domain.Pageable;
 
-import java.util.Date;
 
 public class LoadSearchDto {
 

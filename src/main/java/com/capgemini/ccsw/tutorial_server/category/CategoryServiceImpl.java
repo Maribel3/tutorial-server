@@ -9,21 +9,20 @@ import com.capgemini.ccsw.tutorial_server.category.model.Category;
 import com.capgemini.ccsw.tutorial_server.category.model.CategoryDto;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
-	 /**
-	    * {@inheritDoc}
-	    */
-	    @Override
-	    public Category get(Long id) {
+	@Override
+	public Category get(Long id) {
 
-	        return this.categoryRepository.findById(id).orElse(null);
-	    }
+		return this.categoryRepository.findById(id).orElse(null);
+	}
+
 	@Autowired
 	CategoryRepository categoryRepository;
+
 	@Override
 	public List<Category> findAll() {
-	    return (List<Category>) this.categoryRepository.findAll();
+		return (List<Category>) this.categoryRepository.findAll();
 
 	}
 
@@ -31,19 +30,20 @@ public class CategoryServiceImpl implements CategoryService{
 	public void save(Long id, CategoryDto dto) {
 		Category categoria = null;
 
-	    if (id == null)
-	      categoria = new Category();
-	    else
-            categoria = this.get(id);
+		if (id == null)
+			categoria = new Category();
+		else
+			categoria = this.get(id);
 
-	    categoria.setName(dto.getName());
+		categoria.setName(dto.getName());
 
-	    this.categoryRepository.save(categoria);
-	  }
+		this.categoryRepository.save(categoria);
+	}
+
 	@Override
 	public void delete(Long id) {
-		 this.categoryRepository.deleteById(id);
-		
+		this.categoryRepository.deleteById(id);
+
 	}
 
 }

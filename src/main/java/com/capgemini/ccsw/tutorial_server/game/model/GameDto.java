@@ -3,99 +3,66 @@ package com.capgemini.ccsw.tutorial_server.game.model;
 import com.capgemini.ccsw.tutorial_server.author.model.AuthorDto;
 import com.capgemini.ccsw.tutorial_server.category.model.CategoryDto;
 
-/**
-* @author ccsw
-*/
 public class GameDto {
 
-    private Long id;
+	private Long id;
 
-    private String title;
+	private String title;
 
-    private String age;
+	private String age;
 
-    private CategoryDto category;
+	private CategoryDto category;
 
-    private AuthorDto author;
+	private AuthorDto author;
 
-    /**
-    * @return id
-    */
-    public Long getId() {
+	public Long getId() {
 
-        return this.id;
-    }
+		return this.id;
+	}
 
-    /**
-    * @param id new value of {@link #getId}.
-    */
-    public void setId(Long id) {
+	public void setId(Long id) {
 
-        this.id = id;
-    }
+		this.id = id;
+	}
 
-    /**
-    * @return title
-    */
-    public String getTitle() {
+	public String getTitle() {
 
-        return this.title;
-    }
+		return this.title;
+	}
 
-    /**
-    * @param title new value of {@link #getTitle}.
-    */
-    public void setTitle(String title) {
+	public void setTitle(String title) {
 
-        this.title = title;
-    }
+		this.title = title;
+	}
 
-    /**
-    * @return age
-    */
-    public String getAge() {
+	public String getAge() {
 
-        return this.age;
-    }
+		return this.age;
+	}
 
-    /**
-    * @param age new value of {@link #getAge}.
-    */
-    public void setAge(String age) {
+	public void setAge(String age) {
 
-        this.age = age;
-    }
+		this.age = age;
+	}
 
-    /**
-    * @return category
-    */
-    public CategoryDto getCategory() {
+	public CategoryDto getCategory() {
 
-        return this.category;
-    }
+		return this.category;
+	}
 
-    /**
-    * @param category new value of {@link #getCategory}.
-    */
-    public void setCategory(CategoryDto category) {
+	public void setCategory(CategoryDto category) {
 
-        this.category = category;
-    }
+		this.category = category;
+	}
 
-    /**
-    * @return author
-    */
-    public AuthorDto getAuthor() {
+	public AuthorDto getAuthor() {
 
-        return this.author;
-    }
+		return this.author;
+	}
 
-    /**
-    * @param author new value of {@link #getAuthor}.
-    */
-    public void setAuthor(AuthorDto author) {
+	public void setAuthor(AuthorDto author) {
 
-        this.author = author;
-    }
+		this.author = author;
+	}
 
 }

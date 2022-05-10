@@ -33,21 +33,17 @@ public class Load {
 	@ManyToOne
 	@JoinColumn(name = "game_id", nullable = false)
 	private Game game;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "client_id", nullable = false)
 	private Client client;
 
-	
 	@Column(name = "date_loan", nullable = false)
-    
-	
-	private Date dateLoan;
-	
-	@Column(name = "date_return", nullable = false)
-   
 
-	
+	private Date dateLoan;
+
+	@Column(name = "date_return", nullable = false)
+
 	private Date dateReturn;
 
 	public Long getId() {
@@ -89,7 +85,5 @@ public class Load {
 	public void setDateReturn(Date dateReturn) {
 		this.dateReturn = dateReturn;
 	}
-
-	
 
 }

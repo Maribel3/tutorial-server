@@ -19,56 +19,48 @@ import com.devonfw.module.beanmapping.common.api.BeanMapper;
 @RestController
 @CrossOrigin("*")
 
-
 public class CategoryController {
 
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@Autowired
 	LoadService loadService;
-	
+
 	@Autowired
 	GameService gameService;
-	
+
 	@Autowired
 	BeanMapper beanMapper;
-	
+
 	@CrossOrigin(origins = "*")
 
-	@RequestMapping(path="", method = RequestMethod.GET)
-	 public List<CategoryDto> findAll() {
+	@RequestMapping(path = "", method = RequestMethod.GET)
+	public List<CategoryDto> findAll() {
 
-	    return this.beanMapper.mapList(this.categoryService.findAll(), CategoryDto.class);
-	  }
-	
-	@RequestMapping(path = {"","/{id}"}, method = RequestMethod.POST)
-	
-	public void save (@PathVariable(name = "id", required = false) Long id, @RequestBody CategoryDto dto) {
-	    this.categoryService.save(id, dto);
+		return this.beanMapper.mapList(this.categoryService.findAll(), CategoryDto.class);
+	}
+
+	@RequestMapping(path = { "", "/{id}" }, method = RequestMethod.POST)
+
+	public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody CategoryDto dto) {
+		this.categoryService.save(id, dto);
 
 	}
-	
-	 @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-	  public void delete(@PathVariable("id") Long id) {
-		 Long game = id;
-		 Long category = id;
-		
-			
-		
-			try {
-				this.loadService.deleteGameLoad(game);
-				this.gameService.deleteByCategoryIdNativo(category);
-				this.categoryService.delete(id);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-		
-		
-	   
 
-	  }
+	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Long id) {
+		Long game = id;
+		Long category = id;
+
+		try {
+			this.loadService.deleteGameLoad(game);
+			this.gameService.deleteByCategoryIdNativo(category);
+			this.categoryService.delete(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }

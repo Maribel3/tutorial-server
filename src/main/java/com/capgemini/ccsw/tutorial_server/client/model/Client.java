@@ -8,15 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Client")
+@Table(name = "Client")
 public class Client {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
-	
-	@Column(name= "name", nullable = false)
+
+	@Column(name = "name", nullable = false)
 	private String name;
 
 	public Long getId() {
@@ -34,6 +34,5 @@ public class Client {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

@@ -21,31 +21,31 @@ import com.devonfw.module.beanmapping.common.api.BeanMapper;
 @CrossOrigin(origins = "*")
 public class GameController {
 
-    @Autowired
-    GameService gameService;
+	@Autowired
+	GameService gameService;
 
-    @Autowired
-    BeanMapper beanMapper;
+	@Autowired
+	BeanMapper beanMapper;
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<GameDto> find(@RequestParam(value = "title", required = false) String title,
-            @RequestParam(value = "idCategory", required = false) Long idCategory) {
+	@RequestMapping(path = "", method = RequestMethod.GET)
+	public List<GameDto> find(@RequestParam(value = "title", required = false) String title,
+			@RequestParam(value = "idCategory", required = false) Long idCategory) {
 
-        List<Game> games = gameService.find(title, idCategory);
+		List<Game> games = gameService.find(title, idCategory);
 
-        return beanMapper.mapList(games, GameDto.class);
-    }
+		return beanMapper.mapList(games, GameDto.class);
+	}
 
-    @RequestMapping(path = { "", "/{id}" }, method = RequestMethod.PUT)
-    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody GameDto dto) {
+	@RequestMapping(path = { "", "/{id}" }, method = RequestMethod.PUT)
+	public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody GameDto dto) {
 
-        gameService.save(id, dto);
-    }
-    
-    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-	  public void delete(@PathVariable("id") Long id) {
-		  this.gameService.delete(id);
-		 
-		  }
+		gameService.save(id, dto);
+	}
+
+	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Long id) {
+		this.gameService.delete(id);
+
+	}
 
 }

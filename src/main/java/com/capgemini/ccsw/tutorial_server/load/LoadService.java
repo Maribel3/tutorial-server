@@ -17,29 +17,27 @@ import com.capgemini.ccsw.tutorial_server.load.model.LoadSearchDto;
 public interface LoadService {
 
 	List<Load> findAll();
-	
-	
-	void delete (Long id);
-	
-	List<Load> findClient(Long client);
-	List <Load> findGame(Long game);
-	List<Load> findGameClient(Long game, Long client);
-	List<Load> findDate (
-			String fecha);
-	void save (Long id, LoadDto dto);
-	List <Load> findSearchFilter(Long game,Long client, String fecha);
-	
+
+	void delete(Long id);
+
+	void save(Long id, LoadDto dto);
+
 	void deleteGameLoad(Long game);
+
 	Page<Load> findPage(LoadSearchDto dto);
-	Integer validateLoan(Long game,String fecha);
-	List <Load> findSearchClientDate(Long client,String fecha);
-	Integer validateGameLoad (String fecha, Long client);
+
+	Integer validateLoan(Long game, String fecha);
+
+	Integer validateGameLoad(String fecha, Long client);
+
 	Integer comprobarClientePrestamo(Long client);
-	Integer comprobarJuegos (Long game, String fecha);
-	Integer fechaInferior(Long client,String fecha);
-	Integer validarDateReturn(Long client,String fecha);
-	List <Load> findGameDate(Long game, String fecha);
-	List <Load> findClientDate(Long client,String fecha);
-	Page<Load> findSearchFilterPage(Long game, Long client,String fecha, Pageable pageable);
-	
+
+	Integer comprobarJuegos(Long game, String fecha);
+
+	Integer fechaInferior(Long client, String fecha);
+
+	Integer validarDateReturn(Long client, String fecha);
+
+	Page<Load> findSearchFilterPage(Long game, Long client, String fecha, Pageable pageable);
+
 }

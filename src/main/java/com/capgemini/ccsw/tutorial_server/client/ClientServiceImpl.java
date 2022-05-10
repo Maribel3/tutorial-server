@@ -1,4 +1,5 @@
 package com.capgemini.ccsw.tutorial_server.client;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,69 +7,70 @@ import org.springframework.stereotype.Service;
 
 import com.capgemini.ccsw.tutorial_server.client.model.Client;
 import com.capgemini.ccsw.tutorial_server.client.model.ClientDto;
-import com.capgemini.ccsw.tutorial_server.load.model.Load;
 
 @Service
-public class ClientServiceImpl implements ClientService{
+public class ClientServiceImpl implements ClientService {
 	@Autowired
-	  ClientRepository clientRepository;
+	ClientRepository clientRepository;
 
-	 public Client get(Long id) {
+	public Client get(Long id) {
 
-	        return this.clientRepository.findById(id).orElse(null);
-	    }
-	  @Override
-	  public List<Client> findAll() {
+		return this.clientRepository.findById(id).orElse(null);
+	}
 
-	    return (List<Client>) this.clientRepository.findAll();
-	  }
+	@Override
+	public List<Client> findAll() {
 
-	  /**
-	  * {@inheritDoc}
-	  */
-	  @Override
-	  public void save(Long id, ClientDto dto) {
+		return (List<Client>) this.clientRepository.findAll();
+	}
 
-	    Client client = null;
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void save(Long id, ClientDto dto) {
 
-	    if (id == null)
-	      client = new Client();
-	    else
-	      client = this.clientRepository.findById(id).orElse(null);
+		Client client = null;
 
-	    client.setName(dto.getName());
+		if (id == null)
+			client = new Client();
+		else
+			client = this.clientRepository.findById(id).orElse(null);
 
-	    this.clientRepository.save(client);
-	  }
+		client.setName(dto.getName());
 
-	  /**
-	  * {@inheritDoc}
-	 * @return 
-	  */
-	  
-	  @SuppressWarnings("unlikely-arg-type")
+		this.clientRepository.save(client);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @return
+	 */
+
+	@SuppressWarnings("unlikely-arg-type")
 	public boolean validateName(String name) {
-		  if (clientRepository.searchName(name).equals(name)) {
-			  return true;
-		  }
-		  else {
-			  return false;
-		  }
-	  }
-	  @Override
-	  public boolean delete(Long id) {
+		if (clientRepository.searchName(name).equals(name)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-		  try {
-			  clientRepository.deleteById(id);
-			  return true;
-			  
-		  }
-		  catch(Exception err) {
-			  return false;
-		  }
-	  }
-	  public Integer validarCliente(String name) {
-			return this.clientRepository.validarCliente(name);
-				}
+	@Override
+	public boolean delete(Long id) {
+
+		try {
+			clientRepository.deleteById(id);
+			return true;
+
+		} catch (Exception err) {
+			return false;
+		}
+	}
+
+	public Integer validarCliente(String name) {
+		return this.clientRepository.validarCliente(name);
+	}
 
 }
