@@ -34,9 +34,8 @@ public interface LoadRepository extends CrudRepository<Load, Long>{
 	List<Load> findClient(Long client);
 
 	
-	@Query("select l from Load l where ?1 between date_loan and date_return")
-	List<Load> findDate (
-			String fecha);
+	@Query("select l from Load l where :fecha between date_loan and date_return")
+	List<Load> findDate (@Param("fecha") String fecha);
 
 	@Query("select l from Load l where (:game is null or l.game.id = :game) "
 			+ "and (:client is null or l.client.id = :client) and  :fecha between date_loan and date_return")

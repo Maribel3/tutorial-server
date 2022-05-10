@@ -71,9 +71,7 @@ public class LoadController {
 	  
 	 @ResponseBody
 	 @RequestMapping(path = "/searchDate", method = RequestMethod.GET)
-	 public List<LoadDto> findDate (
-		
-			@PathVariable(required = false)String fecha){
+	 public List<LoadDto> findDate (@RequestParam(value="fecha",required = false)String fecha){
 		 
 		 List<Load> loads = loadService.findDate(fecha);
 		 return this.beanMapper.mapList(loads, LoadDto.class);
