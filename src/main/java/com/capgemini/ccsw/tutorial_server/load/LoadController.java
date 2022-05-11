@@ -45,8 +45,8 @@ public class LoadController {
 	@RequestMapping(path = "/findSearchFilterPage", method = RequestMethod.POST)
 	public Page<LoadDto> findSearchFilterPage(@RequestParam(value = "game", required = false) Long game,
 			@RequestParam(value = "client", required = false) Long client,
-			@RequestParam(value = "fecha", required = false) String fecha, Pageable pageable) {
-		return this.beanMapper.mapPage(this.loadService.findSearchFilterPage(game, client, fecha, pageable),
+			@RequestParam(value = "fecha", required = false) String fecha, @RequestBody LoadSearchDto dto) {
+		return this.beanMapper.mapPage(this.loadService.findSearchFilterPage(game, client, fecha, dto.getPageable()),
 				LoadDto.class);
 	}
 
